@@ -2,21 +2,20 @@ import React, { useState } from 'react';
 import { StyleSheet, Text, TextInput, View, Button, Alert } from 'react-native';
 
 function BoasVindas(props) {
-
   const [nome, setNome] = useState('');
   const [sobrenome, setSobrenome] = useState('');
   const [mensagem, setMensagem] = useState('Seja bem-vindo(a)!');
   const [mostraMensagem, setMostraMensagem] = useState(false);
 
-  const _apresentarMensagem = () => {
+  const _aprensentarMensagem = () => {
     if (!nome == '' && !sobrenome == '') {
       setMostraMensagem(true);
     } else {
       Alert.alert(
-        'Preencimento obrigatório',
+        'Preenchimento obrigatório',
         'Informe o nome e o sobrenome!',
         [
-          { text: 'OK' },
+          { text: 'Ok' },
         ],
       );
     }
@@ -26,12 +25,12 @@ function BoasVindas(props) {
     setNome('');
     setSobrenome('');
     setMostraMensagem(false);
-  }
-
+  } 
+  
   return (
     <View style={styles.container}>
 
-      <Text style={styles.titulo}>Identifique-se</Text>
+      <Text style={styles.titulo}>Indentifique-se</Text>
 
       <TextInput
         style={styles.campo}
@@ -41,36 +40,38 @@ function BoasVindas(props) {
       />
 
       <TextInput
-          style={styles.campo}
-          placeholder="Digite seu sobrenome"
-          onChangeText={sobrenome => setSobrenome(sobrenome)}
-          value={sobrenome}
+        style={styles.campo}
+        placeholder="Digite seu sobrenome"
+        onChangeText={sobrenome => setSobrenome(sobrenome)}
+        value={sobrenome}
       />
 
-      <View style={styles.botaoContainer}>
+      <View style={StyleSheet.botaoContainer}>
         <Button
-          onPress={_apresentarMensagem}
-          title="Ok"
+          onPress={_aprensentarMensagem}
+          title='Ok'
         />
       </View>
 
-      {mostraMensagem && (
-        <View>
-          <Text style={styles.textos}>Olá, {nome} {sobrenome}! {props.saudacao}</Text>
-          <Text style={styles.textos}>{mensagem}</Text>
-        </View>
-      )}
-
-      <View style={styles.botaoContainer}>
-        <Button
-          onPress={_limpar}
-          title="Limpar"
-        />
+    {mostraMensagem && (
+      <View>
+        <Text style={styles.textos}>Olá, {nome} {sobrenome}! {props.saudacao}</Text>
+        <Text style={styles.textos}>{mensagem}</Text>
       </View>
+    )}
 
+    <View style={styles.botaoContainer}>
+      <Button
+        onPress={_limpar}
+        title="Limpar"
+      />
     </View>
+
+  </View>
+
   )
 }
+
 const styles = StyleSheet.create({
   container: {
      backgroundColor: '#081a31',
@@ -86,8 +87,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   textos: {
-     fontSize: 14,
+     fontSize: 16,
      color: '#FFFFFF',
+     fontWeight: 'bold',
      textAlign: "center",
   },
   campo: {
